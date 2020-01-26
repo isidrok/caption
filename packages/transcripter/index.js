@@ -1,5 +1,3 @@
-
-
 const EventEmitter = require('events');
 const path = require('path');
 const express = require('express');
@@ -14,37 +12,40 @@ function capitalize(string) {
 }
 
 function createServer({ public, onMessage }) {
-    const app = express();
-    const server = http.createServer(app);
-    const io = socket(server);
-    app.use(express.static(public));
-    io.on('connection', function (socket) {
-        socket.on('message', onMessage);
-    });
+
     return server;
 }
-
 
 class Transcripter extends EventEmitter {
     constructor(port) {
         super();
         this._port = port;
-        this._server = this._createServer();
+        this._createServer();
     }
     start() {
         this._server.listen(this._port, this._onConnected.bind(this));
     }
     close() {
         this._server.close();
+        this._socket.emit('close');
+        this._io.close();
     }
     _createServer() {
-        return createServer({
-            public: PUBLIC,
-            onMessage: this._onMessage.bind(this),
+        this._app = express();
+        this._server = http.createServer(this._app);
+        this._io = socket(this._server);
+        this._app.use(express.static(PUBLIC));
+        this._io.on('connection', (socket)  => {
+            this._socket = socket;
+            socket.on('message',  this._onMessage.bind(this));
+            socket.on('final',  this._onFinal.bind(this));
         });
     }
     _onMessage(message) {
         this.emit('message', capitalize(message));
+    }
+    _onFinal(message){
+        this.emit('final', capitalize(message));
     }
     _onConnected() {
         this.emit('connected', `http://localhost:${this._server.address().port}`);
