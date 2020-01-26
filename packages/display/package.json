@@ -1,0 +1,14 @@
+{
+  "name": "@caption/display",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@caption/transcripter": "0.0.0",
+    "electron": "^7.1.10"
+  }
+}
