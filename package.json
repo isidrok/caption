@@ -3,7 +3,20 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "main": "index.js",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager ."
+  },
+  "dependencies": {
+    "@caption/display": "0.0.0",
+    "@caption/transcripter": "0.0.0",
+    "electron": "^7.1.10"
+  },
+  "devDependencies": {
+    "electron-packager": "^14.2.0"
+  }
 }

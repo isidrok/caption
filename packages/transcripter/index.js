@@ -13,7 +13,7 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function createServer({public, onMessage}){
+function createServer({ public, onMessage }) {
     const app = express();
     const server = http.createServer(app);
     const io = socket(server);
@@ -31,10 +31,10 @@ class Transcripter extends EventEmitter {
         this._port = port;
         this._server = this._createServer();
     }
-    start(){
+    start() {
         this._server.listen(this._port, this._onConnected.bind(this));
     }
-    close(){
+    close() {
         this._server.close();
     }
     _createServer() {
@@ -51,4 +51,4 @@ class Transcripter extends EventEmitter {
     }
 }
 
-module.exports = {Transcripter};
+module.exports = { Transcripter };

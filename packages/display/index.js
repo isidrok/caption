@@ -1,56 +1,56 @@
 const path = require('path');
-const { app, BrowserWindow, screen } = require('electron');
-const { Transcripter } = require('@caption/transcripter');
+const EventEmitter = require('events');
 
-const transcripter = new Transcripter(3000);
-let win;
-
-function createWindow() {
-    const { width, height } = screen.getPrimaryDisplay().size;
-    win = new BrowserWindow({
-        width: width * 0.8,
-        height: height * 0.1,
-        y: 0,
-        x: width * 0.1,
-        frame: false,
-        webPreferences: {
-            nodeIntegration: true
+class Display extends EventEmitter {
+    constructor(electron) {
+        super();
+        this._electron = electron;
+        this._configureApp();
+    }
+    intro(message) {
+        this._window.webContents.send('intro', message);
+    }
+    write(message) {
+        this._window.webContents.send('message', message);
+    }
+    _configureApp() {
+        this._electron.app.on('ready', this._onAppReady.bind(this));
+        this._electron.app.on('window-all-closed', this._onAppClosed.bind(this));
+    }
+    _createWindow() {
+        const { width, height } = this._electron.screen.getPrimaryDisplay().size;
+        return new this._electron.BrowserWindow({
+            width: width * 0.8,
+            height: height * 0.1,
+            y: 0,
+            x: width * 0.1,
+            frame: false,
+            webPreferences: {
+                nodeIntegration: true
+            }
+        });
+    }
+    _configureWindow() {
+        this._window.setAlwaysOnTop(true, 'floating', 1);
+        this._window.webContents.on('did-finish-load', this._onPageLoaded.bind(this));
+    }
+    _start() {
+        this._window.loadFile(path.resolve(__dirname, 'public', 'index.html'));
+    }
+    _onAppReady() {
+        this._window = this._createWindow();
+        this._configureWindow();
+        this._start();
+    }
+    _onAppClosed() {
+        if (process.platform !== 'darwin') {
+            this.emit('close');
+            this._electron.app.quit();
         }
-    });
-}
-
-function onPageLoaded() {
-    transcripter.on('connected', onConnected);
-    transcripter.start();
-}
-
-function onConnected(address) {
-    win.webContents.send('intro', `Open Google Chrome and navigate to ${address}`);
-}
-
-function onMessage(message) {
-    console.log(message);
-    win.webContents.send('message', message);
-}
-
-function loadPage() {
-    win.loadFile(path.resolve(__dirname, 'public', 'index.html'));
-}
-
-function start() {
-    createWindow();
-    win.setAlwaysOnTop(true, 'floating', 1);
-    win.webContents.on('did-finish-load', onPageLoaded);
-    transcripter.on('message', onMessage);
-    loadPage();
-}
-
-function close() {
-    if (process.platform !== 'darwin') {
-        transcripter.close();
-        app.quit();
+    }
+    _onPageLoaded() {
+        this.emit('load');
     }
 }
 
-app.on('ready', start)
-app.on('window-all-closed', close);
+module.exports = { Display };
