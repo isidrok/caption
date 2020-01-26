@@ -1,22 +1,26 @@
+const portfinder = require('portfinder');
 const electron = require('electron');
-const { Display } = require("@caption/display");
+const { Display } = require('@caption/display');
 const { Transcripter } = require('@caption/transcripter');
 
-const display = new Display(electron);
-const transcripter = new Transcripter(3000);
 
-transcripter.on('connected', function (address) {
-    display.intro(`Open Google Chrome and navigate to ${address}`);
-});
+portfinder.getPortPromise().then(function(port) {
+    const display = new Display(electron);
+    const transcripter = new Transcripter(port);
 
-transcripter.on('message', function (message) {
-    display.write(message);
-});
+    transcripter.on('connected', function (address) {
+        display.intro(`Open Google Chrome and navigate to ${address}`);
+    });
 
-display.on('close', function () {
-    transcripter.close();
-})
+    transcripter.on('message', function (message) {
+        display.write(message);
+    });
 
-display.on('load', function () {
-    transcripter.start();
+    display.on('close', function () {
+        transcripter.close();
+    })
+
+    display.on('load', function () {
+        transcripter.start();
+    });
 });

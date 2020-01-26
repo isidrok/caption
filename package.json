@@ -14,7 +14,8 @@
   "dependencies": {
     "@caption/display": "0.0.0",
     "@caption/transcripter": "0.0.0",
-    "electron": "^7.1.10"
+    "electron": "^7.1.10",
+    "portfinder": "^1.0.25"
   },
   "devDependencies": {
     "electron-packager": "^14.2.0"
