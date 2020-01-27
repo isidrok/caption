@@ -3,7 +3,6 @@ const electron = require('electron');
 const open = require('open');
 const { Display } = require('@caption/display');
 const { Transcripter } = require('@caption/transcripter');
-const { Logger } = require('@caption/logger');
 
 function getChromeExec() {
     switch (process.platform) {
@@ -17,8 +16,6 @@ async function run() {
     const port = await portfinder.getPortPromise();
     const display = new Display(electron);
     const transcripter = new Transcripter(port);
-    const logger = new Logger();
-    let browserProcess;
 
     transcripter.on('connected', function (address) {
         display.intro(`Opening ${address} on Google Chrome.`);
@@ -29,15 +26,8 @@ async function run() {
         display.write(message);
     });
 
-    transcripter.on('final', function (message) {
-        console.log(message);
-        logger.write(message);
-    })
-
     display.on('close', async function () {
         transcripter.close();
-        await logger.save();
-        logger.close();
     });
 
     display.on('load', function () {

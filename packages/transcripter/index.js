@@ -11,11 +11,6 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function createServer({ public, onMessage }) {
-
-    return server;
-}
-
 class Transcripter extends EventEmitter {
     constructor(port) {
         super();
@@ -38,14 +33,10 @@ class Transcripter extends EventEmitter {
         this._io.on('connection', (socket)  => {
             this._socket = socket;
             socket.on('message',  this._onMessage.bind(this));
-            socket.on('final',  this._onFinal.bind(this));
         });
     }
     _onMessage(message) {
         this.emit('message', capitalize(message));
-    }
-    _onFinal(message){
-        this.emit('final', capitalize(message));
     }
     _onConnected() {
         this.emit('connected', `http://localhost:${this._server.address().port}`);

@@ -25,9 +25,6 @@
             const { confidence, transcript } = results[i][0];
             if (confidence > 0.4) {
                 notify('message', transcript);
-                if(results[i].isFinal){
-                    notify('final', transcript);
-                }
             }
         }
     }
