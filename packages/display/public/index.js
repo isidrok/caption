@@ -9,7 +9,7 @@
         timeout = setTimeout(function () {
             display.textContent = '';
             display.scrollTo(0, 0);
-        }, 3000);
+        }, 5000);
     });
     ipcRenderer.on('intro', function (ev, message) {
         display.textContent = message;

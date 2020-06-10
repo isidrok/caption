@@ -6,9 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Caption transcripter</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            padding: 0;           
+        }
+        body {
+            background-color: #21211C;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+            cursor: pointer;
+            color: inherit;
+        }
+    </style>
 </head>
 
 <body>
+    <h1>
+        Live Caption
+    </h1>
+    <p>
+        <small>
+            <a href="https://github.com/isidrok/caption">isidrok/caption</a>
+        </small>
+    </p>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
 </body>
