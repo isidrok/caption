@@ -1,5 +1,7 @@
 # Live caption
 
+Live caption app using the [Web Speech API](https://wicg.github.io/speech-api/) and [Electron](https://www.electronjs.org/).
+
 ## Installation
 
 1. Download the latests binary from the [releases page](https://github.com/isidrok/caption/releases) and uncompress it in any location you like.
