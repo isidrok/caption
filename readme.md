@@ -36,6 +36,9 @@ If you want to display the audio comming from your computer instead of the one f
     ```bash
     yarn build
     ```
+## Credits
+
+This application was inspired by https://github.com/MidCamp/live-captioning
 
 ## License
 MIT © [Isidro Torregrosa Torralba](https://github.com/isidrok)
