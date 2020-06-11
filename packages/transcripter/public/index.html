@@ -5,39 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Caption transcripter</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Live caption</title>
     <style>
         html,
         body {
             height: 100%;
-            padding: 0;           
+            padding: 0;
+            margin: 0;
         }
+       
         body {
             background-color: #21211C;
             color: #fff;
             display: flex;
             flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        main {
+            flex: 8;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+        aside {
+            flex: 1;
+            text-align: center;
         }
         a {
             text-decoration: none;
             cursor: pointer;
-            color: inherit;
+            color: chartreuse;
+        }
+
+        .attribution {
+            justify-self: flex-end;
         }
     </style>
 </head>
 
 <body>
-    <h1>
-        Live Caption
-    </h1>
-    <h2>Do not close this page</h2>
-    <h3>
-        <small>
-            <a href="https://github.com/isidrok/caption">isidrok/caption</a>
-        </small>
-    </h3>
+    <main>
+        <h1>
+            Live Caption
+        </h1>
+        <h2>Do not close this page</h2>
+        <h3>
+            <small>
+                <a href="https://github.com/isidrok/caption">isidrok/caption</a>
+            </small>
+        </h3>
+    </main>
+    <aside>
+        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+                href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        <div>License: MIT © <a href="https://github.com/isidrok">Isidro Torregrosa Torralba</a></div>
+    </aside>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>

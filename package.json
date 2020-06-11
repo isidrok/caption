@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
+  "license": "MIT",
+  "repository": "isidrok/caption",
+  "author": "Isidro Torregrosa Torralba <isistorre95@gmail.com>",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager ."
+    "build": "electron-packager . live-caption --out dist --icon=icon.ico"
   },
   "dependencies": {
     "@caption/display": "0.0.0",

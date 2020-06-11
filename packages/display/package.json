@@ -2,5 +2,7 @@
   "name": "@caption/display",
   "version": "0.0.0",
   "main": "index.js",
-  "private": true
+  "private": true,
+  "license": "MIT",
+  "author": "Isidro Torregrosa Torralba <isistorre95@gmail.com>"
 }
