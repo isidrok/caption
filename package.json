@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . live-caption --out dist --icon=icon.ico"
+    "build": "electron-packager . live-caption --out dist --icon=icon.ico --overwrite"
   },
   "dependencies": {
     "@caption/display": "0.0.0",
