@@ -16,7 +16,7 @@
   "dependencies": {
     "@caption/display": "0.0.0",
     "@caption/transcripter": "0.0.0",
-    "electron": "^7.1.10",
+    "electron": "^9.4.0",
     "open": "^7.0.0",
     "portfinder": "^1.0.25"
   },
