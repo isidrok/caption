@@ -4,9 +4,10 @@
   "main": "index.js",
   "private": true,
   "license": "MIT",
-  "author": "Isidro Torregrosa Torralba <isistorre95@gmail.com>",
+  "author": "Isidro Torregrosa Torralba <isidrok@pm.me>",
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
-  }
+  },
+  "type": "commonjs"
 }

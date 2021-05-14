@@ -28,7 +28,10 @@ class Display extends EventEmitter {
             x: width * 0.1,
             frame: false,
             webPreferences: {
-                nodeIntegration: true
+                contextIsolation: false,
+                nodeIntegration: true,
+                nodeIntegrationInWorker: true,
+                enableRemoteModule: true
             }
         });
     }

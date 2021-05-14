@@ -4,14 +4,6 @@ const open = require('open');
 const { Display } = require('@caption/display');
 const { Transcripter } = require('@caption/transcripter');
 
-function getChromeExec() {
-    switch (process.platform) {
-        case 'win32': return 'chrome';
-        case 'darwin': return 'google chrome';
-        default: return 'google-chrome';
-    }
-}
-
 async function run() {
     const port = await portfinder.getPortPromise();
     const display = new Display(electron);
@@ -19,7 +11,7 @@ async function run() {
 
     transcripter.on('connected', function (address) {
         display.intro(`Opening ${address} on Google Chrome.`);
-        open(address, { app: [getChromeExec()] });
+        open(address, { app: {name: open.apps.chrome} });
     });
 
     transcripter.on('message', function (message) {

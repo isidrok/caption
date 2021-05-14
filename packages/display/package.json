@@ -4,5 +4,6 @@
   "main": "index.js",
   "private": true,
   "license": "MIT",
-  "author": "Isidro Torregrosa Torralba <isistorre95@gmail.com>"
+  "author": "Isidro Torregrosa Torralba <isidrok@pm.me>",
+  "type": "commonjs"
 }

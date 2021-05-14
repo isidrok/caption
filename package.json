@@ -1,11 +1,12 @@
 {
   "name": "@caption/root",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "main": "index.js",
   "license": "MIT",
   "repository": "isidrok/caption",
-  "author": "Isidro Torregrosa Torralba <isistorre95@gmail.com>",
+  "author": "Isidro Torregrosa Torralba <isidrok@pm.me>",
+  "type": "commonjs",
   "workspaces": [
     "packages/*"
   ],
@@ -16,11 +17,11 @@
   "dependencies": {
     "@caption/display": "0.0.0",
     "@caption/transcripter": "0.0.0",
-    "electron": "^7.1.10",
-    "open": "^7.0.0",
-    "portfinder": "^1.0.25"
+    "electron": "^12.0.7",
+    "open": "^8.0.8",
+    "portfinder": "^1.0.28"
   },
   "devDependencies": {
-    "electron-packager": "^14.2.0"
+    "electron-packager": "^15.2.0"
   }
 }
